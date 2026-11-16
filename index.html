@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REAL SENSI ULTRA GOLD CYBER V30 ABSOLUTE</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        escuro: '#0F0F13',
+                        preto: '#000000',
+                        laranja: '#FF9500',
+                        vermelho: '#FF2200',
+                        dourado: '#FFCC00',
+                        painel: '#121218',
+                        borda: '#FFAA00',
+                        texto_vermelho: '#FF3322',
+                        gold: '#ffd700',
+                        neon: '#8b0000',
+                        red: '#ff3b3b',
+                    },
+                    fontFamily: { tech: ['Orbitron', 'sans-serif'] },
+                    boxShadow: {
+                        'glow-laranja': '0 0 18px #FF9500, inset 0 0 12px #FF950030',
+                        'glow-vermelho': '0 0 18px #FF2200, inset 0 0 12px #FF220030',
+                        'glow-dourado': '0 0 15px #FFCC00, inset 0 0 8px #FFCC0020',
+                        'glow-neon': '0 0 20px #8b0000, 0 0 40px #ff3b3b',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .clip-custom {
+                clip-path: polygon(0% 10%, 10% 0%, 90% 0%, 100% 10%, 100% 90%, 90% 100%, 10% 100%, 0% 90%);
+            }
+            .clip-input {
+                clip-path: polygon(0% 20%, 2% 0%, 98% 0%, 100% 20%, 100% 80%, 98% 100%, 2% 100%, 0% 80%);
+            }
+            .text-glow { text-shadow: 0 0 8px currentColor; }
+            .bg-gradient-cyber { background: linear-gradient(135deg, #000000 0%, #2b0000 50%, #000000 100%); }
+            .gradiente-ouro {
+                background: linear-gradient(45deg, #ffd700, #ff9800, #ff3b3b, #8b0000, #ffd700);
+                background-size: 400% 400%;
+                animation: brilho 2s linear infinite;
+            }
+        }
+        @keyframes girar { 0%{transform:rotate(0deg);} 100%{transform:rotate(360deg);} }
+        @keyframes brilho { 0%{background-position:0% 50%;} 50%{background-position:100% 50%;} 100%{background-position:0% 50%;} }
+        @keyframes pulse { 0%{transform:scale(1);} 100%{transform:scale(1.05);} }
+        @keyframes flutuar { 0%{transform:translateY(0);} 100%{transform:translateY(-8px);} }
+        @keyframes tremer { 0%{transform:translateX(-2px);} 100%{transform:translateX(2px);} }
+        @keyframes pulsarOlho {
+            0% { transform: scale(1); box-shadow: inset 0 0 20px #000, 0 0 30px rgba(255,59,59,.6), 0 0 60px rgba(255,215,0,.3); }
+            100% { transform: scale(1.08); box-shadow: inset 0 0 25px #000, 0 0 40px rgba(255,59,59,.8), 0 0 80px rgba(255,215,0,.5); }
+        }
+        @keyframes brilhoIris { 0%{filter:brightness(1);} 100%{filter:brightness(1.4);} }
+        @keyframes piscarTexto { 0%{opacity:1;} 100%{opacity:.6;} }
+        @keyframes moverGrad { 0%{background-position:0% 50%;} 100%{background-position:100% 50%;} }
+    </style>
+</head>
+<body class="bg-preto min-h-screen flex items-center justify-center font-tech overflow-hidden">
+    
+    <!-- TELA DE LOGIN -->
+    <div id="telaLogin" class="fixed inset-0 z-50 bg-gradient-cyber flex items-center justify-center p-4">
+        <div class="absolute w-[600px] h-[600px] bg-radial-gradient from-gold/15 to-transparent rounded-full animate-[girar_8s_linear_infinite] z-0"></div>
+        <div class="w-full max-w-md clip-custom gradiente-ouro p-1 relative z-10">
+            <div class="bg-painel/95 w-full h-full p-8 text-center clip-custom">
+                <h1 class="text-4xl font-black bg-gradient-to-b from-white via-gold to-neon bg-clip-text text-transparent drop-shadow-[0_0_10px_#ffd700] animate-[pulse_1.8s_infinite_alternate]">REAL SENSI</h1>
+                <p class="text-lg font-bold tracking-[0.3em] text-red text-glow mt-2 mb-2">ULTRA GOLD V30</p>
+                <p class="text-sm text-dourado/80 mb-4 tracking-wider">⚡ MODO ABSOLUTO • FF ATUALIZADO ⚡</p>
+                
+                <div class="bg-gold/10 border border-gold p-3 rounded-lg text-gold font-bold text-sm mb-6">🔒 DIGITE A SENHA ABAIXO</div>
+                
+                <i class="fa-solid fa-lock text-red text-5xl mb-4 text-glow animate-[flutuar_2s_infinite_alternate]"></i>
+                
+                <input type="password" id="inputSenha" placeholder="DIGITE A SENHA" 
+                    class="w-full h-16 bg-escuro/80 border-2 border-red/30 rounded-xl px-4 text-white text-center text-xl font-bold outline-none focus:border-gold focus:shadow-glow-dourado transition-all mb-4">
+                
+                <button onclick="abrirPainel()" class="w-full h-16 gradiente-ouro rounded-xl text-white font-black text-xl tracking-wider hover:scale-105 transition-all">⚡ ENTRAR</button>
+                
+                <p id="erroSenha" class="text-red text-sm mt-3 hidden animate-[tremer_0.15s_infinite_alternate] bg-neon/10 p-2 rounded-lg border border-red">❌ SENHA INCORRETA</p>
+                
+                <p class="text-white/50 text-xs mt-4">VERSÃO ABSOLUTE • 2026</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- FUNDO -->
+    <div class="fixed inset-0 bg-gradient-to-br from-[#1a0f0f] to-preto/95"></div>
+    <div class="fixed inset-0 opacity-10" style="background-image:url('https://www.transparenttextures.com/patterns/dark-mosaic.png')"></div>
+
+    <!-- PAINEL PRINCIPAL -->
+    <div class="relative z-10 w-[94%] max-w-md clip-custom bg-painel/90 border-2 border-borda/60 shadow-glow-dourado p-7">
+        <div class="text-center mb-8">
+            <h2 class="text-2xl font-black text-dourado text-glow">MODO ABSOLUTO</h2>
+            <p class="text-sm text-white/60">CALIBRAGEM 1:1 • NOVA ESCALA FF (0-100)</p>
+        </div>
+
+        <div class="space-y-4 mb-6">
+            <div>
+                <label class="block text-white/80 text-sm mb-1">MARCA DO CELULAR</label>
+                <input type="text" id="marca" placeholder="Samsung, Xiaomi..." 
+                    class="w-full h-12 bg-escuro/80 border-2 border-laranja/40 rounded px-4 text-white outline-none">
+            </div>
+            <div>
+                <label class="block text-white/80 text-sm mb-1">MODELO</label>
+                <input type="text" id="modelo" placeholder="A03, Moto G20..." 
+                    class="w-full h-12 bg-escuro/80 border-2 border-texto_vermelho/40 rounded px-4 text-white outline-none">
+            </div>
+            <div>
+                <label class="block text-white/80 text-sm mb-1">INFLUENCIADOR</label>
+                <input type="text" id="famoso" placeholder="Nobru, Two9..." 
+                    class="w-full h-12 bg-escuro/80 border-2 border-dourado/40 rounded px-4 text-white outline-none">
+            </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4 mb-6">
+            <div>
+                <label class="block text-white/80 text-sm mb-1">TIPO</label>
+                <select id="tipo" class="w-full h-12 bg-escuro/80 border-2 border-laranja/40 rounded px-4 text-white outline-none">
+                    <option>BAIXA</option><option selected>MÉDIA</option><option>ALTA</option>
+                </select>
+            </div>
+            <div>
+                <label class="block text-white/80 text-sm mb-1">ESTILO</label>
+                <select id="modo" class="w-full h-12 bg-escuro/80 border-2 border-laranja/40 rounded px-4 text-white outline-none">
+                    <option selected>PADRÃO</option><option>AGRESSIVO</option><option>PRECISÃO</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4 mb-6">
+            <div>
+                <label class="block text-white/80 text-sm mb-1">CALIBRAGEM</label>
+                <select id="calibragem" class="w-full h-12 bg-escuro/80 border-2 border-laranja/40 rounded px-4 text-white outline-none">
+                    <option>ESTÁVEL</option><option selected>RECOIL ZERO</option><option>FREESTYLE</option>
+                </select>
+            </div>
+            <div>
+                <label class="block text-white/80 text-sm mb-1">USAR DPI</label>
+                <select id="usarDpi" onchange="toggleDpi()" class="w-full h-12 bg-escuro/80 border-2 border-laranja/40 rounded px-4 text-white outline-none">
+                    <option>DESLIGADO</option><option selected>ATIVADO</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="dpiField" class="mb-6">
+            <label class="block text-white/80 text-sm mb-1">DPI (320-600 recomendado)</label>
+            <input type="number" id="dpi" min="200" max="1200" placeholder="450, 500..." 
+                class="w-full h-12 bg-escuro/80 border-2 border-vermelho/50 rounded px-4 text-white text-center outline-none">
+            <p id="avisoDpi" class="text-red text-xs mt-1 hidden">⚠️ Use entre 320 e 600 para Samsung A03</p>
+        </div>
+
+        <button onclick="processar()" 
+            class="w-full h-14 gradiente-ouro rounded text-white font-bold text-lg hover:scale-105 transition-all">
+            ⚡ GERAR SENSI ABSOLUTA
+        </button>
+        <p class="text-white/40 text-xs text-center mt-3">Nova escala FF: 0 a 100 • Hierarquia: Geral > Vermelho > 2x > 4x</p>
+    </div>
+
+    <!-- LOADER -->
+    <div id="loader" class="relative z-10 w-[94%] max-w-md mt-6 clip-custom bg-painel/90 border-2 border-borda/60 p-6 hidden">
+        <div class="text-center">
+            <div class="w-24 h-24 mx-auto rounded-full bg-white/90 shadow-[inset_0_0_20px_#000,0_0_30px_rgba(255,59,59,.6)] animate-[pulsarOlho_2s_infinite_alternate]">
+                <div class="w-12 h-12 mt-6 mx-auto rounded-full bg-gradient-to-br from-red to-laranja"></div>
+            </div>
+            <p id="status" class="text-dourado font-bold mt-4 animate-[piscarTexto_1s_infinite_alternate]">ANALISANDO...</p>
+            <div class="w-full h-4 bg-escuro rounded-full mt-3 overflow-hidden">
+                <div id="barra" class="h-full bg-gradient-to-r from-gold to-red w-0 transition-all duration-150"></div>
+            </div>
+            <p id="porcento" class="text-white font-bold mt-1">0%</p>
+        </div>
+    </div>
+
+    <!-- RESULTADO -->
+    <div id="resultado" class="relative z-10 w-[94%] max-w-md mt-6 clip-custom bg-painel/90 border-2 border-borda/60 p-6 hidden">
+        <h3 class="text-xl font-black text-center text-dourado mb-6 text-glow">✅ SENSI CALCULADA</h3>
+        <div id="cards"></div>
+    </div>
+
+    <script>
+        const SENHA_CORRETA = "SENSITY2026";
+        const scans = ["ESTABILIZANDO MIRA...", "REDUZINDO RECUO...", "CALIBRANDO CAPA...", "SINCRONIZANDO DPI...", "FINALIZANDO..."];
+
+        function abrirPainel() {
+            if (document.getElementById("inputSenha").value !== SENHA_CORRETA) {
+                document.getElementById("erroSenha").classList.remove("hidden");
+                return;
+            }
+            document.getElementById("telaLogin").style.display = "none";
+        }
+
+        function toggleDpi() {
+            const mostrar = document.getElementById("usarDpi").value === "ATIVADO";
+            document.getElementById("dpiField").style.display = mostrar ? "block" : "none";
+        }
+
+        function criarBarra(nome, valor) {
+            return `
+            <div class="mb-3">
+                <div class="flex justify-between text-sm mb-1">
+                    <span class="text-white">${nome}</span>
+                    <span class="text-dourado font-bold">${valor}</span>
+                </div>
+                <div class="h-2 bg-escuro rounded-full">
+                    <div class="h-full bg-gradient-to-r from-dourado to-red rounded-full" style="width:${valor}%"></div>
+                </div>
+            </div>`;
+        }
+
+        function processar() {
+            document.getElementById("loader").style.display = "block";
+            document.getElementById("resultado").style.display = "none";
+            
+            let p = 0;
+            const intervalo = setInterval(() => {
+                p += 5;
+                document.getElementById("porcento").innerText = p + "%";
+                document.getElementById("barra").style.width = p + "%";
+                document.getElementById("status").innerText = scans[Math.floor(Math.random() * scans.length)];
+                if (p >= 100) {
+                    clearInterval(intervalo);
+                    document.getElementById("loader").style.display = "none";
+                    gerar();
+                }
+            }, 100);
+        }
+
+        function gerar() {
+            const tipo = document.getElementById("tipo").value;
+            const modo = document.getElementById("modo").value;
+            const calibragem = document.getElementById("calibragem").value;
+            const marca = document.getElementById("marca").value.toLowerCase();
+            const modelo = document.getElementById("modelo").value.toLowerCase();
+            const famoso = document.getElementById("famoso").value.toLowerCase();
+            const usarDpi = document.getElementById("usarDpi").value;
+            const dpi = usarDpi === "ATIVADO" ? Number(document.getElementById("dpi").value) : "PADRÃO";
+
+            // Base nova escala FF: 0-100
+            let base = { geral:85, red:78, mira2:70, mira4:60, awm:50, livre:75, botao:48 };
+            let fator = 1;
+
+            // Tipo
+            if (tipo === "BAIXA") fator = 0.88;
+            if (tipo === "MÉDIA") fator = 1;
+            if (tipo === "ALTA") fator = 1.12;
+
+            // Estilo
+            if (modo === "AGRESSIVO") fator += 0.06;
+            if (modo === "PRECISÃO") fator -= 0.04;
+
+            // Calibragem
+            if (calibragem === "RECOIL ZERO") fator -= 0.02;
+            if (calibragem === "FREESTYLE") fator += 0.04;
+
+            // Ajustes por marca/modelo
+            if (marca.includes("samsung")) fator -= 0.01;
+            if (marca.includes("xiaomi") || marca.includes("poco")) fator += 0.03;
+            if (modelo.includes("a03") || modelo.includes("a10")) fator -= 0.03;
+            if (modelo.includes("moto g20")) fator -= 0.01;
+
+            // Influenciador
+            if (famoso.includes("nobru")) { base.botao = 50; fator += 0.02; }
+            if (famoso.includes("two9")) fator += 0.03;
+            if (famoso.includes("cerol")) fator -= 0.01;
+
+            // Cálculo final
+            let valores = {
+                geral
